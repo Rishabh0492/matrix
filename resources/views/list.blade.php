@@ -1,6 +1,10 @@
-<link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+@extends('layouts.web')
+@section('title', 'Add New Staff')
+@section('content')
+
+<div>
+    <a class="btn btn-primary" href="/create">ADD</a>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -13,7 +17,13 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
-                                <th>Email</th>
+                                <th>Gender</th>
+                                <th>Department</th>
+                                <th>Image</th>
+                                <th>salary</th>
+                                <th>country</th>
+                                <th>Action</th>
+
                             </tr>
                         </thead>
                     </table>
@@ -22,21 +32,29 @@
         </div>
     </div>
 </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
 <script>
 $(document).ready(function() {
     $('#staffDatatable').DataTable({
         processing: true,
         serverSide: true,
+        searching:false,
         "ajax":{
-                     "url": "/show",
-                     "dataType": "json",
-                     "type": "post",
+                     "url": "/getData",
+                     "type": "get",
                      "data":{ _token: "{{csrf_token()}}"}
                    },
+           "columns": [
+                { "data": "id" ,sortable:false},
+                { "data": "name",sortable:false },
+                { "data": "gender",sortable:false },
+                { "data": "department",sortable:false},
+                { "data": "image",sortable:false},
+                { "data": "salary",sortable:false},
+                { "data": "country",sortable:false},
+                { "data": "action",sortable:false},
+
+            ]        
     });
 });
 </script>
+@endsection

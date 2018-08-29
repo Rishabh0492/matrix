@@ -15,7 +15,8 @@ class CreateStaffDetailsTable extends Migration
     {
         Schema::create('staff_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->foregin('staff_id')->refernces('id')->on('staff')->onDelete('cascade');
+            $table->unsignedInteger('staff_id');
+            $table->foreign('staff_id')->refernces('id')->on('staff');
             $table->string('country');
             $table->string('salary');
             $table->timestamps();

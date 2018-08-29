@@ -14,5 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/show','StaffController@show')->name('staffData');
+Route::get('/show','StaffController@show');
+Route::get('/getData','StaffController@getData');
 Route::get('/create','StaffController@create');
+Route::post('/store','StaffController@store');
+Route::get('show/delete/{id}','StaffController@destroy');
+Route::get('show/{id}/edit','StaffController@edit');
+Route::post('show/update','StaffController@update');
+
